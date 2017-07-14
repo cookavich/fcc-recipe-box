@@ -14,6 +14,8 @@ export const RecipeForm = (props) => (
             Ingredients
             <textarea name="ingredients" />
         </label>
+        <input type="submit" value="Add Recipe" />
+        <span type="submit" value="Cancel"/>
     </form>);
 
 RecipeForm.propTypes = {
