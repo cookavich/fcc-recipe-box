@@ -5,7 +5,8 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            showRecipeForm: false
+            showRecipeForm: false,
+            recipeBox: []
         };
         this.handleClick = this.handleClick.bind(this);
     }
@@ -14,7 +15,10 @@ class App extends Component {
         this.setState({showRecipeForm: true});
     }
 
-
+    componentWillMount() {
+        if(!localStorage.getItem('recipeBox'))
+            localStorage.setItem('recipeBox', JSON.stringify([]));
+    }
 
     render() {
         return (

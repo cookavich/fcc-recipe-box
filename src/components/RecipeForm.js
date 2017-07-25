@@ -1,15 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class RecipeForm extends React.Component {
+export class RecipeForm extends React.Component {
     constructor(props) {
         super(props);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event) {
-        console.log(event);
-        event.preventDefault();
+    handleInputChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleSubmit() {
+        if(this.state.name !== '' && this.state.ingredients !== '') {
+            const recipeBox = JSON.parse(localStorage.getItem('recipeBox'));
+            const recipeToAdd = {
+                name: this.state.name,
+                ingredients: this.state.ingredients.split(',')
+            };
+            recipeBox.push(recipeToAdd);
+            localStorage.setItem('recipeBox', JSON.stringify(recipeBox));
+        }
     }
 
     render() {
@@ -21,11 +35,16 @@ class RecipeForm extends React.Component {
                 }
                 <label>
                     Recipe Name
-                    <input type="text" name="name"/>
+                    <input
+                        type="text"
+                        name="name"
+                        onChange={this.handleInputChange} />
                 </label>
                 <label>
                     Ingredients
-                    <textarea name="ingredients"/>
+                    <textarea
+                        name="ingredients"
+                        onChange={this.handleInputChange} />
                 </label>
                 {this.props.type === 'add'
                     ? <input type="submit" value="Add Recipe"/>
@@ -40,3 +59,4 @@ class RecipeForm extends React.Component {
 RecipeForm.propTypes = {
     type: PropTypes.string.isRequired,
 };
+
