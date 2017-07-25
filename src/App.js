@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 import './App.css';
 import {RecipeForm, RecipeList} from './components';
+import {addRecipe, generateId, findById, updateRecipe, removeRecipe} from './lib/recipeHelpers';
 class App extends Component {
     constructor() {
         super();
         this.state = {
             showRecipeForm: false,
-            recipeBox: []
+            recipes: []
         };
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
+    handleClick = () => {
         this.setState({showRecipeForm: true});
-    }
+    };
 
-    componentWillMount() {
-        if(!localStorage.getItem('recipeBox'))
-            localStorage.setItem('recipeBox', JSON.stringify([]));
-    }
+    handleSubmit = (evt) => {
+        evt.preventDefault();
+        const newId = '';
+    };
 
     render() {
         return (
@@ -28,7 +28,7 @@ class App extends Component {
                 <button onClick={this.handleClick}>
                     Add Recipe
                 </button>
-                {this.state.showRecipeForm && <RecipeForm type="add"/>}
+                {this.state.showRecipeForm && <RecipeForm type="add" />}
             </div>
         );
     }
