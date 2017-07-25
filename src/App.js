@@ -7,7 +7,8 @@ class App extends Component {
         super();
         this.state = {
             showRecipeForm: false,
-            recipes: []
+            recipes: [],
+            currentRecipe: ''
         };
     }
 
@@ -28,7 +29,10 @@ class App extends Component {
                 <button onClick={this.handleClick}>
                     Add Recipe
                 </button>
-                {this.state.showRecipeForm && <RecipeForm type="add" />}
+                {this.state.showRecipeForm && <RecipeForm
+                    type="add"
+                    handleSubmit={this.handleSubmit}
+                />}
             </div>
         );
     }

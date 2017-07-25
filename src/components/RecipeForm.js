@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const RecipeForm = () => {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                {this.props.type === 'add'
+export const RecipeForm = (props) => (
+            <form onSubmit={props.handleSubmit}>
+                {props.type === 'add'
                     ? <h3>Add a Recipe</h3>
                     : <h3>Edit Recipe</h3>
                 }
@@ -21,14 +20,13 @@ export const RecipeForm = () => {
                         name="ingredients"
                         onChange={this.handleInputChange} />
                 </label>
-                {this.props.type === 'add'
+                {props.type === 'add'
                     ? <input type="submit" value="Add Recipe"/>
                     : <input type="submit" value="Edit Recipe"/>
                 }
                 <span type="submit" value="Cancel"/>
             </form>
-        )
-};
+        );
 
 RecipeForm.propTypes = {
     type: PropTypes.string.isRequired,
