@@ -12,13 +12,15 @@ export const RecipeForm = (props) => (
                     <input
                         type="text"
                         name="name"
-                        onChange={this.handleInputChange} />
+                        onChange={props.handleInputChange}
+                        value={props.currentRecipe.name}/>
                 </label>
                 <label>
                     Ingredients
                     <textarea
                         name="ingredients"
-                        onChange={this.handleInputChange} />
+                        onChange={props.handleInputChange}
+                        value={props.currentRecipe.ingredients}/>
                 </label>
                 {props.type === 'add'
                     ? <input type="submit" value="Add Recipe"/>
