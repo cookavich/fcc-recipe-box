@@ -17,6 +17,12 @@ class App extends Component {
         };
     }
 
+    handleRemove = (id, evt) => {
+        evt.preventDefault();
+        const updatedRecipes = removeRecipe(this.state.recipes, id);
+        this.setState({recipes: updatedRecipes});
+    };
+
     handleClick = () => {
         this.setState({showRecipeForm: true});
     };
@@ -61,7 +67,9 @@ class App extends Component {
         return (
             <div className="App">
                 <h1>Recipe Box</h1>
-                <RecipeList/>
+                <RecipeList
+                    recipes={this.state.recipes}
+                    handleRemove={this.handleRemove} />
                 <button onClick={this.handleClick}>
                     Add Recipe
                 </button>
